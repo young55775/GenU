@@ -55,4 +55,4 @@ for i in tqdm(range(num_images)):
     #
     # image_uint8 = (image * 100000).astype(np.uint8)
     cv2.imwrite(f'./mask_data/{i}.tif', image)
-    np.save(f'./mask_data/{i}.npz', mask)
+    np.save(f'./mask_data/{i}.npy', mask)
