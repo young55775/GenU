@@ -2,8 +2,6 @@
 
 **GenU** is a novel pipeline that leverages biologically inspired synthetic datasets for training U-Net architectures to segment subcellular structures, including **microtubules** and **vesicles**. Our method eliminates the reliance on experimental or physics-based simulation data, simplifying the dataset creation process while maintaining biological relevance. With just **1,000 synthetic images** and **five epochs**, **GenU** achieves impressive segmentation performance, all without fine-tuning on experimental microscopy data.
 
-![Segmentation Results](img_3.png)
-
 ## Requirements
 
 To run GenU, you'll need the following Python packages:
