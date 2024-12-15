@@ -58,15 +58,15 @@ model.eval()
 
 
 with torch.no_grad():
-    ori_shape = cv2.imread(r"C:\Users\guozh\Desktop\segmentation\epi.tif").shape[0]
+    ori_shape = cv2.imread(r"C:\Users\guozh\Desktop\segmentation\2_resize.tif").shape[0]
     img = torch.tensor(cv2.normalize(
-        cv2.resize(cv2.imread(r"C:\Users\guozh\Desktop\segmentation\epi.tif", cv2.IMREAD_UNCHANGED).astype('float32'), dsize=(1024, 1024),
+        cv2.resize(cv2.imread(r"C:\Users\guozh\Desktop\segmentation\2_resize.tif", cv2.IMREAD_UNCHANGED).astype('float32'), dsize=(2048, 2048),
                    interpolation=cv2.INTER_LINEAR), None, 0, 255, cv2.NORM_MINMAX)).to('cpu').unsqueeze(0).unsqueeze(0)
-    mask = model(img).detach( ).cpu().squeeze(0).reshape(1024,1024)
+    mask = model(img).detach( ).cpu().squeeze(0).reshape(2048,2048)
 mask = np.array(mask).astype('float32')
 # mask = cv2.resize(np.array(mask),(ori_shape,ori_shape),cv2.INTER_CUBIC) #OPTIONAL resize back to original shape
-plt.imshow(mask>0.5,cmap='gray') # adjust this threshold to get the best performance
+plt.imshow(mask>0.8,cmap='gray') # adjust this threshold to get the best performance
 plt.show(block=True)
-mask = mask > 0.5
+mask = mask > 0.8
 mask = mask.astype('int')
 cv2.imwrite('./mask.tif',mask)
