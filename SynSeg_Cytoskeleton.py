@@ -52,7 +52,7 @@ class UNet(nn.Module):
         return torch.sigmoid(self.final(dec1))
 
 model = UNet()
-model.load_state_dict(torch.load('SynSeg_cytoskeleton_seg.pth', map_location=torch.device('cpu')))
+model.load_state_dict(torch.load('SynSeg_cytoskeleton_seg_b.pth', map_location=torch.device('cpu')))
 model.eval()
 
 
@@ -64,9 +64,9 @@ with torch.no_grad():
                    interpolation=cv2.INTER_LINEAR), None, 0, 255, cv2.NORM_MINMAX)).to('cpu').unsqueeze(0).unsqueeze(0)
     mask = model(img).detach( ).cpu().squeeze(0).reshape(1024,1024)
 mask = np.array(mask).astype('float32')
-mask = cv2.resize(np.array(mask),(ori_shape,ori_shape),cv2.INTER_LINEAR)
-plt.imshow(mask>0.65,cmap='gray')
+# mask = cv2.resize(np.array(mask),(ori_shape,ori_shape),cv2.INTER_CUBIC) #OPTIONAL resize back to original shape
+plt.imshow(mask>0.5,cmap='gray') # adjust this threshold to get the best performance
 plt.show(block=True)
-mask = mask > 0.65
+mask = mask > 0.5
 mask = mask.astype('int')
-cv2.imwrite('./mask.tif',mask>0.65)
+cv2.imwrite('./mask.tif',mask)

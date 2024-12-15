@@ -54,7 +54,7 @@ class UNet(nn.Module):
 model = UNet()
 model.load_state_dict(torch.load('SynSeg_Vesicle_seg.pth', map_location=torch.device('cpu')))
 model.eval()
-img = cv2.imread(r"C:\Users\guozh\Desktop\segmentation\v.tif",cv2.IMREAD_UNCHANGED).astype('float32')
+img = cv2.imread(r"C:\Users\guozh\Desktop\segmentation\v.tif",cv2.IMREAD_UNCHANGED).astype('float32') # We recommend padding to at least 512*512 with black pixels.
 ori_shape = img.shape[0]
 img = cv2.resize(img,(2048,2048),cv2.INTER_LINEAR)
 img = img[np.newaxis, :, :]
@@ -62,8 +62,8 @@ img = torch.tensor(img)
 img = img.to('cpu').unsqueeze(0)
 with torch.no_grad():
     mask = model(img).detach( ).cpu().squeeze(0).reshape(2048,2048)
-mask = cv2.resize(np.array(mask),(ori_shape,ori_shape),cv2.INTER_LINEAR)
-plt.imshow(mask>0.2,cmap='gray')
+# mask = cv2.resize(np.array(mask),(ori_shape,ori_shape),cv2.INTER_LINEAR) #OPTIONAL resize back to original shape
+plt.imshow(mask>0.2,cmap='gray') #adjust this threshold for best performance
 plt.show(block=True)
 mask = mask>0.2
 mask = mask.astype('int')
