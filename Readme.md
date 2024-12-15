@@ -1,10 +1,10 @@
-# GenU: Cytoskeleton and Vesicle Segmentation with Generated Datasets and U-Net
+# SynSeg: Cytoskeleton and Vesicle Segmentation with Generated Datasets and U-Net
 
-**GenU** is a novel pipeline that leverages biologically inspired synthetic datasets for training U-Net architectures to segment subcellular structures, including **microtubules** and **vesicles**. Our method eliminates the reliance on experimental or physics-based simulation data, simplifying the dataset creation process while maintaining biological relevance. With just **1,000 synthetic images** and **five epochs**, **GenU** achieves impressive segmentation performance, all without fine-tuning on experimental microscopy data.
+**SynSeg** is a novel pipeline that leverages biologically inspired synthetic datasets for training U-Net architectures to segment subcellular structures, including **microtubules** and **vesicles**. Our method eliminates the reliance on experimental or physics-based simulation data, simplifying the dataset creation process while maintaining biological relevance. With just **1,000 synthetic images** and **five epochs**, **SynSeg** achieves impressive segmentation performance, all without fine-tuning on experimental microscopy data.
 
 ## Requirements
 
-To run GenU, you'll need the following Python packages:
+To run SynSeg, you'll need the following Python packages:
 
 - **Pytorch** == 2.5.1
 - **Scikit-learn** == 1.6.0
@@ -19,7 +19,7 @@ pip install ultralytics
 ```
 Ultralytics is a highly documented YOLO package that includes almost everything needed for computer vision deep learning tasks.
 ### Overview
-GenU utilizes U-Net, a deep learning architecture designed for image segmentation, in combination with synthetically 
+SynSeg utilizes U-Net, a deep learning architecture designed for image segmentation, in combination with synthetically 
 generated datasets. By creating biologically inspired synthetic images, we remove the need for large, manually annotated
 experimental data. The pipeline trains a U-Net model for the segmentation of important cellular structures without 
 fine-tuning on experimental data.
@@ -44,11 +44,11 @@ To generate training and validation datasets, use the following scripts:
 - **Cytoskeleton Generation**: `Cytoskeleton_generator.py`
 
 ### Segmentation
-- **Vesicle Segmentation**: `GenU_Vesicle.py`
+- **Vesicle Segmentation**: `SynSeg_Vesicle.py`
     - **Input**: 16-bit TIFF images with a single channel.
     - **Output**: Synthetic vesicle dataset for training.
   
-- **Cytoskeleton Segmentation**: `GenU_Cytoskeleton.py`
+- **Cytoskeleton Segmentation**: `SynSeg_Cytoskeleton.py`
     - **Input**: 8-bit TIFF images with a single channel.
     - **Output**: Synthetic cytoskeleton dataset for training.
 

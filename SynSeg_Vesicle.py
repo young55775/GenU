@@ -52,7 +52,7 @@ class UNet(nn.Module):
         return torch.sigmoid(self.final(dec1))
 
 model = UNet()
-model.load_state_dict(torch.load('./GenU_Vesicle_seg.pth',map_location=torch.device('cpu')))
+model.load_state_dict(torch.load('SynSeg_Vesicle_seg.pth', map_location=torch.device('cpu')))
 model.eval()
 img = cv2.imread(r"C:\Users\guozh\Desktop\segmentation\v.tif",cv2.IMREAD_UNCHANGED).astype('float32')
 ori_shape = img.shape[0]

@@ -52,7 +52,7 @@ class UNet(nn.Module):
         return torch.sigmoid(self.final(dec1))
 
 model = UNet()
-model.load_state_dict(torch.load('./GenU_cytoskeleton_seg.pth',map_location=torch.device('cpu')))
+model.load_state_dict(torch.load('SynSeg_cytoskeleton_seg.pth', map_location=torch.device('cpu')))
 model.eval()
 
 
