@@ -47,10 +47,12 @@ To generate training and validation datasets, use the following scripts:
 - **Vesicle Segmentation**: `SynSeg_Vesicle.py`
     - **Input**: 16-bit TIFF images with a single channel.
     - **Output**: Binary mask.
-  
+    - **parameter**: SynSeg_Vesicle_seg.pth
+
 - **Cytoskeleton Segmentation**: `SynSeg_Cytoskeleton.py`
-    - **Input**: 8-bit TIFF images with a single channel.
+    - **Input**: 16-bit TIFF images with a single channel.
     - **Output**: Binary mask.
+    - **parameter**: SynSeg_cytoskeleton_seg.pth
 
 These scripts will take your TIFF images and output binary masks. The threshold for mask generation can be adjusted 
 directly within the script to suit your needs.

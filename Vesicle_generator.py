@@ -6,13 +6,13 @@ import cv2
 from tqdm import tqdm
 from tqdm.contrib.concurrent import process_map
 image_size = 512
-num_images = 1000
-min_brightness = 0.1
+num_images = 200
+min_brightness = 0.03
 max_brightness = 0.7
-min_size = 1
-max_size = 8
+min_size = 0.2
+max_size = 13
 
-background_base_range = (0.3, random.random()*0.3+0.5)
+background_base_range = (0.3, random.random()*0.5+0.5)
 background_blur_sigma = random.random()*4+6
 noise_intensity = 0.1+0.1*random.random()
 
@@ -21,7 +21,7 @@ halo_sigma = random.random()*20+50
 
 min_block_size = 20
 max_block_size = 100
-num_blocks = 5
+num_blocks = 10
 
 def main(i):
     gradient = np.linspace(0, np.random.uniform(*background_base_range), image_size)
@@ -52,7 +52,7 @@ def main(i):
         mask_circle = ((x - center_x) ** 2 + (y - center_y) ** 2) <= radius ** 2
         spot = np.zeros_like(image)
         spot[mask_circle] = brightness
-        blur_sigma = np.random.uniform(0.2, 1)
+        blur_sigma = np.random.uniform(0.2, 1.3)
         spot = gaussian_filter(spot, sigma=blur_sigma)
         image += spot
         mask[mask_circle] = 1
@@ -68,7 +68,7 @@ def main(i):
 
         mask[top_left_y:top_left_y + block_height, top_left_x:top_left_x + block_width] = 0
 
-    cv2.imwrite(f'./mask/train/img/{i}.tif', image)
-    np.save(f'./mask/train/mask/{i}.npy', mask)
+    cv2.imwrite(f'./mask/val/img/{i}.tif', image)
+    np.save(f'./mask/val/mask/{i}.npy', mask)
 if __name__ == "__main__":
-    process_map(main,list(range(num_images)),max_workers=6)
+    process_map(main,list(range(num_images)),max_workers=12)

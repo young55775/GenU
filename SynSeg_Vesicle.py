@@ -30,7 +30,7 @@ class UNet(nn.Module):
             nn.Conv2d(in_channels, out_channels, kernel_size=3, padding=1),
             nn.BatchNorm2d(out_channels),
             nn.ReLU(inplace=True),
-            nn.Conv2d(out_channels, out_channels, kernel_size=5, padding=2),
+            nn.Conv2d(out_channels, out_channels, kernel_size=3, padding=1),
             nn.BatchNorm2d(out_channels),
             nn.ReLU(inplace=True)
         )
@@ -55,22 +55,23 @@ def normalize(img):
     return ((img/65536)*255).astype('float32')
 
 
-bg_cut = 1
+bg_cut = 1 #adjust this value if the background is annoying in the original picture
 model = UNet()
 model.load_state_dict(torch.load('SynSeg_Vesicle_seg.pth', map_location=torch.device('cpu')))
 model.eval()
 img = cv2.imread(r"C:\Users\guozh\Desktop\segmentation\v.tif",cv2.IMREAD_UNCHANGED).astype('float32') # We recommend padding to at least 512*512 with black pixels.
 ori_shape = img.shape[0]
-img = normalize(img)*bg_cut
-img = cv2.resize(img,(1024,1024),cv2.INTER_LINEAR)
+# img = cv2.normalize(img,None,0,50,cv2.NORM_MINMAX).astype('float32')
+img = cv2.resize(img,(1024,1024),cv2.INTER_LINEAR).astype('float32')
 img = img[np.newaxis, :, :]
+img *= bg_cut
 img = torch.tensor(img)
 img = img.to('cpu').unsqueeze(0)
 with torch.no_grad():
     mask = model(img).detach( ).cpu().squeeze(0).reshape(1024,1024)
 # mask = cv2.resize(np.array(mask),(ori_shape,ori_shape),cv2.INTER_LINEAR) #OPTIONAL resize back to original shape
-plt.imshow(mask>0.5,cmap='gray') #adjust this threshold for best performance
+plt.imshow(mask,cmap='gray') #adjust this threshold for best performance
 plt.show(block=True)
-mask = np.array(mask)
-# mask = mask.astype('int')
+mask = np.array(mask>0.3)
+mask = mask.astype('int')
 cv2.imwrite('./vesicle_mask.tif',mask)

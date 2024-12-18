@@ -5,14 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ca932d88-aaff-4f6b-b96a-62e28aa872c1" name="Changes" comment="Initial commit">
-      <change afterPath="$PROJECT_DIR$/SynSeg_Vesicle_large.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SynSeg_Cytoskeleton.py" beforeDir="false" afterPath="$PROJECT_DIR$/SynSeg_Cytoskeleton.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/Readme.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SynSeg_Vesicle.py" beforeDir="false" afterPath="$PROJECT_DIR$/SynSeg_Vesicle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SynSeg_Vesicle_large.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/SynSeg_Vesicle_seg.pth" beforeDir="false" afterPath="$PROJECT_DIR$/SynSeg_Vesicle_seg.pth" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SynSeg_Vesicle_seg2.pth" beforeDir="false" afterPath="$PROJECT_DIR$/SynSeg_Vesicle_seg_larger_vesicles.pth" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SynSeg_Vesicle_seg_larger_vesicles.pth" beforeDir="false" afterPath="$PROJECT_DIR$/SynSeg_Vesicle_seg_b.pth" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Vesicle_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vesicle_generator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unet_segmentation_small.pth" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +70,7 @@
       <recent name="C:\Users\guozh\GenU" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.SynSeg_Cytoskeleton (1)">
+  <component name="RunManager" selected="Python.SynSeg_Vesicle (1)">
     <configuration name="SynSeg_Cytoskeleton (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="SynSeg" />
       <option name="ENV_FILES" value="" />
@@ -308,10 +307,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.SynSeg_Cytoskeleton (1)" />
-        <item itemvalue="Python.SynSeg_Vesicle_large" />
         <item itemvalue="Python.SynSeg_Vesicle (1)" />
         <item itemvalue="Python.Vesicle_generator" />
+        <item itemvalue="Python.SynSeg_Cytoskeleton (1)" />
+        <item itemvalue="Python.SynSeg_Vesicle_large" />
         <item itemvalue="Python.torch_to_onnx" />
       </list>
     </recent_temporary>
@@ -436,7 +435,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734267094695</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Initial commit">
+      <option name="closed" value="true" />
+      <created>1734440976324</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1734440976324</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
